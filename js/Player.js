@@ -8,4 +8,8 @@ class Player {
     attackPlayer(player, diceValue) {
         player.life -= (this.attack * diceValue);
     }
+
+    isDead() {
+        return this.life <= 0;
+    }
 }
