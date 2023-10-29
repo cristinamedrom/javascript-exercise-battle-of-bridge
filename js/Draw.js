@@ -40,9 +40,20 @@ function renderBattleLog(attacker, defender) {
   diceElement.innerText = game.dice.value;
   let text, defeatText;
 
-  text = `${attacker.name} ataca a ${defender.name} y le hace ${
-    attacker.attack * game.dice.value
-  } puntos de daño`;
+  const damage = attacker.attack * game.dice.value;
+
+  if (damage > 10) {
+    console.log("¡Ataque crítico!");
+    const criticalMessage = "¡Ataque crítico!";
+    let criticalText = document.createTextNode(criticalMessage);
+    let criticalLi = document.createElement("li");
+    criticalLi.className = "critical";
+    criticalLi.appendChild(criticalText);
+    ul.appendChild(criticalLi);
+  }
+
+  text = `${attacker.name} ataca a ${defender.name} y le hace ${attacker.attack * game.dice.value
+    } puntos de daño`;
 
   let elementText = document.createTextNode(text);
   let li = document.createElement("li");
@@ -63,5 +74,17 @@ function renderBattleLog(attacker, defender) {
     const gameOver = document.getElementById("game-over");
     gameOver.className = "show";
     document.getElementById("attack").disabled = true;
+
+    const resetButton = document.getElementById("boton-reset");
+    resetButton.addEventListener("click", function () {
+      game.player.life = 100;
+      game.enemy.life = 100;
+      ul.innerHTML = "";
+
+      document.getElementById("attack").disabled = false;
+
+    });
   }
+
+
 }
