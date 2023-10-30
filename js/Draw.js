@@ -34,6 +34,12 @@ function renderLife(player) {
     "health-" + player.name.toLowerCase()
   );
   lifeBar.setAttribute("style", "width:" + player.life + "%");
+
+  if (player.life <= 0) {
+    lifeBar.style.width = "0%";
+  } else {
+    lifeBar.style.width = player.life + "%";
+  }
 }
 
 function renderBattleLog(attacker, defender) {

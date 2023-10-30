@@ -8,6 +8,6 @@ class BattleGame {
     battle(attacker, defender) {
 
         this.dice.roll();
-        attacker.attackPlayer(this.defender, this.dice.value);;
+        attacker.attackPlayer(defender, this.dice.value);;
     }
 }
